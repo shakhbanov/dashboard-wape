@@ -103,5 +103,5 @@ docker-compose logs -f
 
 ## Лицензия
 
-Проект распространяется под лицензией MIT. Подробнее смотрите файл [LICENSE](LICENSE).
+Проект распространяется под лицензией [MIT](https://opensource.org/licenses/MIT).
 
