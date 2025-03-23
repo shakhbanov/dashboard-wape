@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1.0">
+  <title>Dashboard</title>
+  <!-- Favicon -->
+  <link rel="icon" type="image/svg+xml" href="https://s3.shakhbanov.org/blog/logo.svg">
+  <!-- Google Fonts -->
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:400,500,700&display=swap">
+  <!-- Подключаем общий CSS -->
+  <link rel="stylesheet" href="css/styles.css">
+  <!-- jQuery -->
+  <script src="https://cdn.jsdelivr.net/npm/jquery@3.6.0/dist/jquery.min.js"></script>
+  <!-- Moment.js -->
+  <script src="https://cdn.jsdelivr.net/npm/moment@2.29.1/moment.min.js"></script>
+  <!-- DateRangePicker -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.css" />
+  <script src="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.min.js"></script>
+  <!-- Chart.js -->
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <!-- Плагин для аннотаций -->
+  <script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-annotation"></script>
+  <!-- Плагин для подписей на точках (data labels) -->
+  <script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-datalabels@2.0.0"></script>
+
+</head>
+<body>
+  <!-- Оверлей загрузки с крутящимся логотипом -->
+  <div id="loadingOverlay">
+    <img src="https://s3.shakhbanov.org/blog/logo.svg" alt="Logo">
+  </div>
+
+  <div class="container">
+    <!-- Сайдбар -->
+    <div class="sidebar">
+      <div>
+        <h4>Выберите период</h4>
+        <input type="text" id="daterange" />
+      </div>
+      <div>
+        <h4>Показатель</h4>
+        <label class="toggle-label">
+          <div class="toggle-switch">
+            <input type="checkbox" id="toggleChecks" />
+            <span class="slider"></span>
+          </div>
+          Кол-во чеков
+        </label>
+        <label class="toggle-label">
+          <div class="toggle-switch">
+            <input type="checkbox" id="toggleSales" />
+            <span class="slider"></span>
+          </div>
+          Выручка
+        </label>
+      </div>
+      <div>
+        <h4>Рестораны</h4>
+        <input type="text" id="searchRestaurant" placeholder="Поиск..." />
+        <div id="restaurantList"></div>
+      </div>
+    </div>
+
+    <!-- Основное содержимое -->
+    <div class="main-content">
+      <!-- KPI-блок (верхняя строка) -->
+      <div class="kpi-row">
+        <div class="kpi-dashboard">
+          <div class="kpi-total-container">
+            <div class="kpi-total-block">
+              <h1 id="factTotal">0</h1>
+              <p>Факт</p>
+            </div>
+            <div class="kpi-total-block">
+              <h1 id="forecastTotal">0</h1>
+              <p>Прогноз</p>
+            </div>
+            <div class="kpi-total-block">
+              <h1 id="wapeMetric">0%</h1>
+              <p>WAPE</p>
+            </div>
+          </div>
+          <div class="kpi-chart-container">
+            <canvas id="kpiChart"></canvas>
+          </div>
+        </div>
+      </div>
+
+      <!-- Остальные графики -->
+      <!-- Ряд 1 -->
+      <div class="chart-row">
+        <div class="chart-container">
+          <button class="fullscreen-btn" data-chart="chartErrorByDay">⤢</button>
+          <canvas id="chartErrorByDay"></canvas>
+        </div>
+        <div class="chart-container">
+          <button class="fullscreen-btn" data-chart="chartErrorDensity">⤢</button>
+          <canvas id="chartErrorDensity"></canvas>
+        </div>
+      </div>
+      <!-- Ряд 2 -->
+      <div class="chart-row">
+        <div class="chart-container">
+          <button class="fullscreen-btn" data-chart="chartFactForecast">⤢</button>
+          <canvas id="chartFactForecast"></canvas>
+        </div>
+        <div class="chart-container">
+          <button class="fullscreen-btn" data-chart="chartErrorDistribution">⤢</button>
+          <canvas id="chartErrorDistribution"></canvas>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Модальное окно для полноэкранного отображения графика -->
+  <div class="modal-overlay" id="chartModal">
+    <div class="modal-content">
+      <button class="close-btn" id="closeModalBtn">X</button>
+      <canvas id="modalChartCanvas"></canvas>
+    </div>
+  </div>
+
+  <!-- Подключаем JS-файлы (порядок важен) -->
+  <script src="js/quotes.js"></script>
+  <script src="js/charts.js"></script>
+  <script src="js/main.js"></script>
+</body>
+</html>
