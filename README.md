@@ -1,6 +1,9 @@
 # Dashboard WAPE
 
 Данный проект представляет собой веб-приложение (дашборд) для отслеживания качества прогнозирования, где основной метрикой качества является WAPE (Weighted Absolute Percentage Error). Приложение состоит из фронтенд-части на HTML/JS/CSS, бекенд-части на Python (FastAPI) и базы данных, с конфигурацией через Docker и docker-compose.
+<p align="center">
+  <img src="dash.gif" alt="GIF анимация">
+</p>
 
 ## Структура проекта
 
